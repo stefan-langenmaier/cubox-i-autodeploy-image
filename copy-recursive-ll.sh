@@ -22,5 +22,7 @@ if [ -e "$EXECUTABLE" ] && [ -f "$EXECUTABLE" ] && [ -e "$DEST_DIR" ] && [ -d "$
         cp "$EXECUTABLE" "$DEST_DIR$EXECUTABLE"
 
     fi
+else
+	exit 1
 fi
 
