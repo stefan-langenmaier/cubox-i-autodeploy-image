@@ -1,0 +1,34 @@
+#!/bin/busybox sh
+
+rescue_shell() {
+    echo "Something went wrong. Dropping to a shell."
+    /bin/busybox --install -s
+    exec sh
+}
+
+# Mount the /proc and /sys filesystems.
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t devtmpfs none /dev
+
+echo ""
+echo "HELLO. This is your friendly auto deployer"
+echo ""
+echo "ASSUMING YOUR NETWORK IS SETUP WITH DHCP"
+echo ""
+AUTODEPLOY_SCRIPT_SOURCE=`cat autodeploy-script-source`
+AUTODEPLOY_SCRIPT="autodeploy-script"
+echo "DOWNLOADING AUTODEPLOY SCRIPT"
+wget -O "${AUTODEPLOY_SCRIPT}" "${AUTODEPLOY_SCRIPT_SOURCE}" || rescue_shell
+
+echo ""
+echo "STARTING AUTODEPLOY SCRIPT"
+sh "${AUTODEPLOY_SCRIPT}" || rescue_shell
+
+# Clean up
+umount /dev
+umount /proc
+umount /sys
+
+# Boot the real system
+reboot

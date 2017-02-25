@@ -1,0 +1,9 @@
+setenv bootpart 1
+setenv devtype mmc
+setenv devnum 0
+
+setenv bootargs console=${console},${baudrate} ip=dhcp
+load ${devtype} ${devnum}:${bootpart} ${kernel_addr_r} zImage
+load ${devtype} ${devnum}:${bootpart} ${fdt_addr_r} imx6q-cubox-i.dtb
+load ${devtype} ${devnum}:${bootpart} ${ramdisk_addr_r} autodeploy-initramfs.cpio.gz
+bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
