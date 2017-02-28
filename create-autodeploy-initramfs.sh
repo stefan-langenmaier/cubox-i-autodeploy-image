@@ -29,6 +29,7 @@ bash copy-recursive-ll.sh /usr/bin/wget ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /bin/dd ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/parted ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/btrfs ${INITRAMFS_FOLDER}
+bash copy-recursive-ll.sh /sbin/mkfs.btrfs ${INITRAMFS_FOLDER}
 
 # copy ssl certs
 cp -a /etc/ssl/certs/ ${INITRAMFS_FOLDER}/etc/ssl/
