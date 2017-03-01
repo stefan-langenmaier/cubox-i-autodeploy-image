@@ -8,7 +8,7 @@ CONFIG_FOLDER="config"
 INITRAMFS_FOLDER="${OUTPUT_FOLDER}/autodeploy-initramfs"
 
 [[ -d ${INITRAMFS_FOLDER} ]] && rm -r ${INITRAMFS_FOLDER}
-mkdir -p ${INITRAMFS_FOLDER}/{bin,dev,etc,lib,mnt/root,proc,root,sbin,sys,usr/lib,usr/bin,etc/ssl/certs,usr/share/ca-certificates}
+mkdir -p ${INITRAMFS_FOLDER}/{bin,dev,etc,lib,mnt/root,proc,root,sbin,sys,usr/lib,usr/bin,usr/sbin,etc/ssl/certs,usr/share/ca-certificates}
 cp -a /dev/{null,console,tty,tty0,tty1,ram0,urandom,random} ${INITRAMFS_FOLDER}/dev/
 cp -a /proc/{net/route,cmdline} ${INITRAMFS_FOLDER}/proc/
 cp -a /bin/busybox ${INITRAMFS_FOLDER}/bin/busybox
@@ -26,10 +26,12 @@ cp ${CONFIG_FOLDER}/etc/inittab ${INITRAMFS_FOLDER}/etc
 
 
 bash copy-recursive-ll.sh /usr/bin/wget ${INITRAMFS_FOLDER}
-bash copy-recursive-ll.sh /bin/dd ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/parted ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/btrfs ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/mkfs.btrfs ${INITRAMFS_FOLDER}
+bash copy-recursive-ll.sh /sbin/mkfs.ext2 ${INITRAMFS_FOLDER}
+bash copy-recursive-ll.sh /sbin/mkfs.mkswap ${INITRAMFS_FOLDER}
+bash copy-recursive-ll.sh /usr/sbin/partprobe ${INITRAMFS_FOLDER}
 
 # copy ssl certs
 cp -a /etc/ssl/certs/ ${INITRAMFS_FOLDER}/etc/ssl/
