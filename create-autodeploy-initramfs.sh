@@ -21,7 +21,6 @@ cp /lib/libnss_{dns,files}.so.2 /lib/libresolv.so.2 /lib/ld-linux-armhf.so.3 /li
 cp ${CONFIG_FOLDER}/etc/host.conf ${INITRAMFS_FOLDER}/etc
 cp ${CONFIG_FOLDER}/etc/nsswitch.conf ${INITRAMFS_FOLDER}/etc
 cp ${CONFIG_FOLDER}/etc/resolv.conf ${INITRAMFS_FOLDER}/etc
-cp ${CONFIG_FOLDER}/autodeploy-script-source ${INITRAMFS_FOLDER}/
 cp ${CONFIG_FOLDER}/etc/inittab ${INITRAMFS_FOLDER}/etc
 
 

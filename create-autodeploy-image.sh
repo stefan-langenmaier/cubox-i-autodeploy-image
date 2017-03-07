@@ -2,6 +2,7 @@
 
 set -eux
 
+CONFIG_FOLDER="config"
 
 OUTPUT_FOLDER="output"
 [ -d ${OUTPUT_FOLDER} ] && rm -r ${OUTPUT_FOLDER}
@@ -38,6 +39,7 @@ cp kernel-bin/imx6q-cubox-i-4.9.7.dtb ${AUTODEPLOY_MOUNT}/imx6q-cubox-i.dtb
 cp kernel-bin/zImage-4.9.7 ${AUTODEPLOY_MOUNT}/zImage
 mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d config/boot.txt ${AUTODEPLOY_MOUNT}/boot.scr
 cp ${OUTPUT_FOLDER}/autodeploy-initramfs.cpio.gz ${AUTODEPLOY_MOUNT}/
+cp ${CONFIG_FOLDER}/autodeploy-script-source ${AUTODEPLOY_MOUNT}/
 
 echo "unmount"
 umount ${AUTODEPLOY_MOUNT}

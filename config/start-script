@@ -11,6 +11,11 @@ mount -t proc none /proc
 mount -t sysfs none /sys
 mount -t devtmpfs none /dev
 
+mkdir /sdcard
+mount /dev/mmcblk1p1 /sdcard
+cp /sdcard/autodeploy-script-source .
+umount /sdcard
+
 echo ""
 echo "HELLO. This is your friendly auto deployer"
 echo ""
