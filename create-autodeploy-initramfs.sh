@@ -26,11 +26,11 @@ cp ${CONFIG_FOLDER}/etc/inittab ${INITRAMFS_FOLDER}/etc
 
 
 bash copy-recursive-ll.sh /usr/bin/wget ${INITRAMFS_FOLDER}
-bash copy-recursive-ll.sh /sbin/parted ${INITRAMFS_FOLDER}
+bash copy-recursive-ll.sh /usr/sbin/parted ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/btrfs ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/mkfs.btrfs ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/mkfs.ext2 ${INITRAMFS_FOLDER}
-bash copy-recursive-ll.sh /sbin/mkfs.mkswap ${INITRAMFS_FOLDER}
+bash copy-recursive-ll.sh /sbin/mkswap ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /usr/sbin/partprobe ${INITRAMFS_FOLDER}
 
 # copy ssl certs
@@ -49,3 +49,4 @@ ln bin/busybox sbin/reboot
 find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../autodeploy-initramfs.cpio.gz
 #find . -print0 | cpio --null -ov --format=newc | gzip -9 > /boot/custom-initramfs.cpio.gz
 cd -
+echo "INITRAMFS READY"
