@@ -1,1 +1,7 @@
 config/
+SPL
+cubox-i.xz
+imx6q-cubox-i.dtb
+u-boot.img
+zImage
+
