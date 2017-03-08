@@ -1,0 +1,8 @@
+setenv bootpart 1
+setenv devtype mmc
+setenv devnum 0
+
+setenv bootargs console=${console},${baudrate} rootwait rootfstype=btrfs rootflags=compress root=/dev/mmcblk1p3 init=/sbin/init
+load ${devtype} ${devnum}:${bootpart} ${kernel_addr_r} zImage
+load ${devtype} ${devnum}:${bootpart} ${fdt_addr_r} imx6q-cubox-i.dtb
+bootz ${kernel_addr_r} - ${fdt_addr_r}
