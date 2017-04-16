@@ -6,7 +6,7 @@ set -eux
 
 ARCH=$(uname -m)
 
-DATA_SERVER="http://192.168.0.107:8000"
+DATA_SERVER="https://github.com/stefan-langenmaier/cubox-i-autodeploy-image/releases/download/v0.3/"
 if [ "$ARCH" == "armv7l" ]; then
     SDCARD="/dev/mmcblk1"
     P1="p1"
