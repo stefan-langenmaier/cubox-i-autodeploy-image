@@ -25,7 +25,7 @@ AUTODEPLOY_SCRIPT_SOURCE=`cat autodeploy-script-source`
 AUTODEPLOY_SCRIPT="autodeploy-script"
 
 echo "UPDATE TIME" # for https certificates to work
-ntpd -q -p pool.ntp.org
+ntpd -qn -p pool.ntp.org
 
 echo "DOWNLOADING AUTODEPLOY SCRIPT"
 /usr/bin/wget -O "${AUTODEPLOY_SCRIPT}" "${AUTODEPLOY_SCRIPT_SOURCE}" || rescue_shell
