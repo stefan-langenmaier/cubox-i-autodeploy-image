@@ -5,6 +5,7 @@ set -eux
 # there are no temporary downloads, the space is limited all files should be streamed directly in place
 
 ARCH=$(uname -m)
+WGET="/usr/bin/wget"
 
 DATA_SERVER="https://github.com/stefan-langenmaier/cubox-i-autodeploy-image/releases/download/v0.3/"
 if [ "$ARCH" == "armv7l" ]; then
@@ -36,8 +37,8 @@ parted -s ${SDCARD} mkpart primary btrfs      1200MiB "100%"  # root volume
 partprobe
 
 echo "BOOTLOADER SETUP"
-wget -q -O - "${DATA_SERVER}/SPL" | dd of=${SDCARD} bs=1K seek=1
-wget -q -O - "${DATA_SERVER}/u-boot.img" | dd of=${SDCARD} bs=1K seek=69
+${WGET} -q -O - "${DATA_SERVER}/SPL" | dd of=${SDCARD} bs=1K seek=1
+${WGET} -q -O - "${DATA_SERVER}/u-boot.img" | dd of=${SDCARD} bs=1K seek=69
 
 echo "FORMAT"
 mkfs.ext2 -L boot -F ${SDCARD}${P1}
@@ -52,7 +53,7 @@ mkdir ${NEWROOT}
 mount ${SDCARD}${P3} ${NEWROOT}/
 VOLS=${NEWROOT}/vols
 mkdir ${VOLS}
-wget -q -O - "${DATA_SERVER}/cubox-i.xz" | unxz | btrfs receive ${VOLS}/
+${WGET} -q -O - "${DATA_SERVER}/cubox-i.xz" | unxz | btrfs receive ${VOLS}/
 # UGLY HACK but the name is not know
 mv ${VOLS}/* ${VOLS}/root
 btrfs property set -ts ${VOLS}/root ro false
@@ -64,9 +65,9 @@ mount ${SDCARD}${P3} ${NEWROOT}/
 echo "BOOT SETUP"
 BOOT=${NEWROOT}/boot
 mount ${SDCARD}${P1} ${BOOT}
-wget -q -O - "${DATA_SERVER}/boot.scr" > ${BOOT}/boot.scr
-wget -q -O - "${DATA_SERVER}/zImage" > ${BOOT}/zImage
-wget -q -O - "${DATA_SERVER}/imx6q-cubox-i.dtb" > ${BOOT}/imx6q-cubox-i.dtb
+${WGET} -q -O - "${DATA_SERVER}/boot.scr" > ${BOOT}/boot.scr
+${WGET} -q -O - "${DATA_SERVER}/zImage" > ${BOOT}/zImage
+${WGET} -q -O - "${DATA_SERVER}/imx6q-cubox-i.dtb" > ${BOOT}/imx6q-cubox-i.dtb
 umount ${BOOT}
 
 echo "DEFAULT CONFIGURATION"
