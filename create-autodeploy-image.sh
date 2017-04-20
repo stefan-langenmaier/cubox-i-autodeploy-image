@@ -41,6 +41,8 @@ mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d config/boot
 cp ${OUTPUT_FOLDER}/autodeploy-initramfs.cpio.gz ${AUTODEPLOY_MOUNT}/
 cp ${CONFIG_FOLDER}/autodeploy-script-source ${AUTODEPLOY_MOUNT}/
 
+mkdir -p ${AUTODEPLOY_MOUNT}/config/global
+
 echo "make root writable"
 chmod a+w ${AUTODEPLOY_MOUNT}/
 
