@@ -88,7 +88,6 @@ echo "* NETWORK"
 [[ "$ARCH" == "armv7l" ]] &&  chroot ${NEWROOT} /bin/bash -c "rc-update add net.eth0 boot"
 
 
-
 MACHINE="NO_MACHINE_CONFIG"
 if [ -d "/sys/class/net/wlp1s0" ]; then
     MACHINE=$(cat /sys/class/net/wlp1s0/address)
@@ -103,6 +102,12 @@ if [ -d "config/${MACHINE}_"* ]; then
     MACHINE_CONF="config/${MACHINE}_"*
 
     cp ${MACHINE_CONF}/* ${NEWROOT} -R
+
+    echo "* PERMISSIONS"
+    [[ "$ARCH" == "armv7l" ]] &&  chroot ${NEWROOT} /bin/bash -c "chmod +x /etc/local.d/force-ntp-client.start"
+    [[ "$ARCH" == "armv7l" ]] &&  chroot ${NEWROOT} /bin/bash -c "chown ddclient:ddclient /etc/ddclient/ddclient.conf"
+
+
 fi
 
 umount ${NEWROOT}
