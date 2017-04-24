@@ -45,6 +45,7 @@ mkdir -p ${AUTODEPLOY_MOUNT}/config/global
 
 echo "make root writable"
 chmod a+w ${AUTODEPLOY_MOUNT}/
+chmod a+w ${AUTODEPLOY_MOUNT}/config -R
 
 echo "unmount"
 umount ${AUTODEPLOY_MOUNT}
