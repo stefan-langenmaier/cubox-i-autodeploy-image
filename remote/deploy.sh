@@ -7,7 +7,7 @@ set -eux
 ARCH=$(uname -m)
 WGET="/usr/bin/wget"
 
-DATA_SERVER="https://github.com/stefan-langenmaier/cubox-i-autodeploy-image/releases/download/v0.3/"
+DATA_SERVER="https://github.com/stefan-langenmaier/cubox-i-autodeploy-image/releases/download/v0.4/"
 if [ "$ARCH" == "armv7l" ]; then
     SDCARD="/dev/mmcblk1"
     P1="p1"
