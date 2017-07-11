@@ -104,7 +104,7 @@ if [ -d "config/${MACHINE}_"* ]; then
     cp ${MACHINE_CONF}/* ${NEWROOT} -R
 
     echo "* PERMISSIONS"
-    [[ "$ARCH" == "armv7l" ]] &&  chroot ${NEWROOT} /bin/bash -c "chmod +x /etc/local.d/force-ntp-client.start"
+    [[ "$ARCH" == "armv7l" ]] &&  chroot ${NEWROOT} /bin/bash -c "chmod +x /etc/local.d/*.start"
     [[ "$ARCH" == "armv7l" ]] &&  chroot ${NEWROOT} /bin/bash -c "chown ddclient:ddclient /etc/ddclient/ddclient.conf"
 
 
