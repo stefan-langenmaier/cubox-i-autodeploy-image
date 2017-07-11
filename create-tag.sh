@@ -2,11 +2,18 @@
 
 set -eux
 
-TAG="v0.4"
-DESC="Polished behaviour of the installed image"
+TAG="v0.5"
+DESC="Version bump to latest kernel 4.12"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
+
+sed -i "s/TAG=\".*\"$/TAG=\"$TAG\"/" remote/deploy.sh
+
+git add .
+git commit -m "preparing new tag $TAG"
+git tag "$TAG"
+git push
 
 #curl -i -H 'Authorization: token '$TOKEN \
 #	https://api.github.com/user

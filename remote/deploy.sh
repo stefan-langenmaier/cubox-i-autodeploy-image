@@ -4,10 +4,12 @@ set -eux
 
 # there are no temporary downloads, the space is limited all files should be streamed directly in place
 
+TAG="v0.5"
+
 ARCH=$(uname -m)
 WGET="/usr/bin/wget"
 
-DATA_SERVER="https://github.com/stefan-langenmaier/cubox-i-autodeploy-image/releases/download/v0.4/"
+DATA_SERVER="https://github.com/stefan-langenmaier/cubox-i-autodeploy-image/releases/download/${TAG}/"
 if [ "$ARCH" == "armv7l" ]; then
     SDCARD="/dev/mmcblk1"
     P1="p1"
