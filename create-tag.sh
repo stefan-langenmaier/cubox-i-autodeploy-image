@@ -2,8 +2,8 @@
 
 set -eux
 
-TAG="v0.5"
-DESC="Version bump to latest kernel 4.12"
+TAG="v0.6"
+DESC="Version bump to latest kernel 4.12.2"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
