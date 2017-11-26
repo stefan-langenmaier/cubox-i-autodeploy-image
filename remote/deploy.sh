@@ -4,7 +4,7 @@ set -eux
 
 # there are no temporary downloads, the space is limited all files should be streamed directly in place
 
-TAG="v0.6"
+TAG="v0.7"
 
 ARCH=$(uname -m)
 WGET="/usr/bin/wget"

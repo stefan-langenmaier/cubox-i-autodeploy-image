@@ -2,18 +2,23 @@
 
 set -eux
 
-TAG="v0.6"
-DESC="Version bump to latest kernel 4.12.2"
+TAG="v0.7"
+DESC="Version bump to latest kernel 4.14.2 and latest u-boot"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
 
 sed -i "s/TAG=\".*\"$/TAG=\"$TAG\"/" remote/deploy.sh
 
-git add .
-git commit -m "preparing new tag $TAG"
-git tag "$TAG"
-git push
+if [ -z ${TOKEN+x} ]; then
+	echo "GitHub TOKEN is unset"
+	exit 1
+else
+	git add .
+	git commit -m "preparing new tag $TAG"
+	git tag "$TAG"
+	git push
+fi
 
 #curl -i -H 'Authorization: token '$TOKEN \
 #	https://api.github.com/user
