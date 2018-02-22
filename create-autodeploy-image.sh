@@ -23,7 +23,7 @@ echo "install boot loader"
 losetup /dev/loop0 ${OUTPUT_FOLDER}/autodeploy.img
 # mainline u-boot
 dd if=u-boot-bin/SPL of=/dev/loop0 bs=1K seek=1
-dd if=u-boot-bin/u-boot.img of=/dev/loop0 bs=1K seek=69
+dd if=u-boot-bin/u-boot.img of=/dev/loop0 bs=1K seek=138
 losetup -d /dev/loop0
 
 echo "format image"
@@ -37,7 +37,9 @@ mount /dev/loop0 ${AUTODEPLOY_MOUNT}
 echo "copy files"
 cp kernel-bin/imx6q-cubox-i.dtb ${AUTODEPLOY_MOUNT}/imx6q-cubox-i.dtb
 cp kernel-bin/zImage ${AUTODEPLOY_MOUNT}/zImage
-mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d config/boot.txt ${AUTODEPLOY_MOUNT}/boot.scr
+mkdir ${AUTODEPLOY_MOUNT}/extlinux
+cp ${CONFIG_FOLDER}/extlinux.conf ${AUTODEPLOY_MOUNT}/extlinux/
+#mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d config/boot.txt ${AUTODEPLOY_MOUNT}/boot.scr
 cp ${OUTPUT_FOLDER}/autodeploy-initramfs.cpio.gz ${AUTODEPLOY_MOUNT}/
 cp ${CONFIG_FOLDER}/autodeploy-script-source ${AUTODEPLOY_MOUNT}/
 
