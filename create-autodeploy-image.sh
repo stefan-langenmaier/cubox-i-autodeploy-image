@@ -35,12 +35,14 @@ mkdir ${AUTODEPLOY_MOUNT}
 mount /dev/loop0 ${AUTODEPLOY_MOUNT}
 
 echo "copy files"
-cp kernel-bin/imx6q-cubox-i.dtb ${AUTODEPLOY_MOUNT}/imx6q-cubox-i.dtb
+mkdir ${AUTODEPLOY_MOUNT}/dtbs/
+cp kernel-bin/imx6q-cubox-i.dtb ${AUTODEPLOY_MOUNT}/dtbs/imx6q-cubox-i.dtb
 cp kernel-bin/zImage ${AUTODEPLOY_MOUNT}/zImage
 mkdir ${AUTODEPLOY_MOUNT}/extlinux
 cp ${CONFIG_FOLDER}/extlinux.conf ${AUTODEPLOY_MOUNT}/extlinux/
 #mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d config/boot.txt ${AUTODEPLOY_MOUNT}/boot.scr
-cp ${OUTPUT_FOLDER}/autodeploy-initramfs.cpio.gz ${AUTODEPLOY_MOUNT}/
+mkdir ${AUTODEPLOY_MOUNT}/initramfs/
+cp ${OUTPUT_FOLDER}/autodeploy-initramfs.cpio.gz ${AUTODEPLOY_MOUNT}/initramfs/
 cp ${CONFIG_FOLDER}/autodeploy-script-source ${AUTODEPLOY_MOUNT}/
 
 mkdir -p ${AUTODEPLOY_MOUNT}/config/global

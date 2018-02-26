@@ -2,8 +2,8 @@
 
 set -eux
 
-TAG="v0.7"
-DESC="Version bump to latest kernel 4.14.2 and latest u-boot"
+TAG="v0.8"
+DESC="Version bump to latest kernel 4.15.4 and latest u-boot"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
@@ -38,8 +38,8 @@ echo $ID
 REMOTE_FOLDER="remote"
 mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d ${REMOTE_FOLDER}/boot.txt ${REMOTE_FOLDER}/boot.scr
 
-curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @${REMOTE_FOLDER}/boot.scr \
-	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=boot.scr
+curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @${REMOTE_FOLDER}/extlinux.conf \
+	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=extlinux.conf
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @remote/deploy.sh \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=deploy.sh
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @u-boot-bin/SPL \

@@ -40,7 +40,7 @@ partprobe
 
 echo "BOOTLOADER SETUP"
 ${WGET} -q -O - "${DATA_SERVER}/SPL" | dd of=${SDCARD} bs=1K seek=1
-${WGET} -q -O - "${DATA_SERVER}/u-boot.img" | dd of=${SDCARD} bs=1K seek=69
+${WGET} -q -O - "${DATA_SERVER}/u-boot.img" | dd of=${SDCARD} bs=1K seek=138
 
 echo "FORMAT"
 mkfs.ext2 -L boot -F ${SDCARD}${P1}
@@ -67,9 +67,11 @@ mount ${SDCARD}${P3} ${NEWROOT}/
 echo "BOOT SETUP"
 BOOT=${NEWROOT}/boot
 mount ${SDCARD}${P1} ${BOOT}
-${WGET} -q -O - "${DATA_SERVER}/boot.scr" > ${BOOT}/boot.scr
+mkdir ${BOOT}/extlinux
+mkdir ${BOOT}/dtbs
+${WGET} -q -O - "${DATA_SERVER}/extlinux.conf" > ${BOOT}/extlinux/extlinux.conf
 ${WGET} -q -O - "${DATA_SERVER}/zImage" > ${BOOT}/zImage
-${WGET} -q -O - "${DATA_SERVER}/imx6q-cubox-i.dtb" > ${BOOT}/imx6q-cubox-i.dtb
+${WGET} -q -O - "${DATA_SERVER}/imx6q-cubox-i.dtb" > ${BOOT}/dtbs/imx6q-cubox-i.dtb
 umount ${BOOT}
 
 echo "DEFAULT CONFIGURATION"

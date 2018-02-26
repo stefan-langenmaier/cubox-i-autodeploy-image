@@ -11,9 +11,3 @@ $ dd if=output/autodeploy.img of=/dev/sdX
 Afterwards the image can be mounted (ext2) and the autodeploy-source-url can be configured to reference a remote (http(s)) file that should executed to run the deployment
 
 You can also place additional files in the config folder but the space is quite limited an should be reserved for sensitive information like keys and passwords.
-
-## Binaries
-
-### boot.scr
-
-$ mkimage -A arm -T script -O linux -d boot.txt boot.scr
