@@ -40,7 +40,7 @@ partprobe
 
 echo "BOOTLOADER SETUP"
 ${WGET} -q -O - "${DATA_SERVER}/SPL" | dd of=${SDCARD} bs=1K seek=1
-${WGET} -q -O - "${DATA_SERVER}/u-boot.img" | dd of=${SDCARD} bs=1K seek=138
+${WGET} -q -O - "${DATA_SERVER}/u-boot.img" | dd of=${SDCARD} bs=1K seek=69
 
 echo "FORMAT"
 mkfs.ext2 -L boot -F ${SDCARD}${P1}

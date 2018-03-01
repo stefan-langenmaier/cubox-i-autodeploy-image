@@ -23,7 +23,7 @@ echo "install boot loader"
 losetup /dev/loop0 ${OUTPUT_FOLDER}/autodeploy.img
 # mainline u-boot
 dd if=u-boot-bin/SPL of=/dev/loop0 bs=1K seek=1
-dd if=u-boot-bin/u-boot.img of=/dev/loop0 bs=1K seek=138
+dd if=u-boot-bin/u-boot.img of=/dev/loop0 bs=1K seek=69
 losetup -d /dev/loop0
 
 echo "format image"
