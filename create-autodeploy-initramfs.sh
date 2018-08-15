@@ -17,7 +17,7 @@ chmod +x ${INITRAMFS_FOLDER}/start-script
 
 # dns resolution is dynamically linked even if busybox is static
 # https://wiki.gentoo.org/wiki/Custom_Initramfs#DNS
-cp /lib/libnss_{dns,files}.so.2 /lib/libresolv.so.2 /lib/ld-linux-armhf.so.3 /lib/ld-2.23.so /lib/libc.so.6 ${INITRAMFS_FOLDER}/lib
+cp /lib/libnss_{dns,files}.so.2 /lib/libresolv.so.2 /lib/ld-linux-armhf.so.3 /lib/ld-2.25.so /lib/libc.so.6 ${INITRAMFS_FOLDER}/lib
 cp ${CONFIG_FOLDER}/etc/host.conf ${INITRAMFS_FOLDER}/etc
 cp ${CONFIG_FOLDER}/etc/nsswitch.conf ${INITRAMFS_FOLDER}/etc
 cp ${CONFIG_FOLDER}/etc/resolv.conf ${INITRAMFS_FOLDER}/etc
@@ -31,6 +31,8 @@ bash copy-recursive-ll.sh /sbin/mkfs.btrfs ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/mkfs.ext2 ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /sbin/mkswap ${INITRAMFS_FOLDER}
 bash copy-recursive-ll.sh /usr/sbin/partprobe ${INITRAMFS_FOLDER}
+bash copy-recursive-ll.sh /bin/tar ${INITRAMFS_FOLDER}
+bash copy-recursive-ll.sh /usr/bin/unxz ${INITRAMFS_FOLDER}
 
 # copy ssl certs
 cp -a /etc/ssl/certs/ ${INITRAMFS_FOLDER}/etc/ssl/

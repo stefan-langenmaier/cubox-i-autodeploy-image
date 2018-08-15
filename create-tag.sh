@@ -2,8 +2,8 @@
 
 set -eux
 
-TAG="v0.8"
-DESC="Version bump to latest kernel 4.15.4 and latest u-boot"
+TAG="v0.9"
+DESC="Version bump to latest kernel 4.18 and latest u-boot"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
@@ -35,8 +35,8 @@ ID=$(curl -H 'Authorization: token '$TOKEN \
     python3 -c "import sys, json; print(json.load(sys.stdin)['id'])")
 echo $ID
 
-REMOTE_FOLDER="remote"
-mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d ${REMOTE_FOLDER}/boot.txt ${REMOTE_FOLDER}/boot.scr
+#REMOTE_FOLDER="remote"
+#mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d ${REMOTE_FOLDER}/boot.txt ${REMOTE_FOLDER}/boot.scr
 
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @${REMOTE_FOLDER}/extlinux.conf \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=extlinux.conf
@@ -52,5 +52,5 @@ curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/bina
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=zImage
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @output/autodeploy.img \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=autodeploy.img
-curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @../lxc-gentoo-build-tools/.packaged-subvolumes/cubox-i.xz \
-	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=cubox-i.xz
+curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @../lxc-gentoo-build-tools/.packaged-subvolumes/cubox-i.tar.xz \
+	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=cubox-i.tar.xz

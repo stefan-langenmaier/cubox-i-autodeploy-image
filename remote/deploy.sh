@@ -4,7 +4,7 @@ set -eux
 
 # there are no temporary downloads, the space is limited all files should be streamed directly in place
 
-TAG="v0.8"
+TAG="v0.9"
 
 ARCH=$(uname -m)
 WGET="/usr/bin/wget"
@@ -55,11 +55,9 @@ mkdir ${NEWROOT}
 mount ${SDCARD}${P3} ${NEWROOT}/
 VOLS=${NEWROOT}/vols
 mkdir ${VOLS}
-${WGET} -q -O - "${DATA_SERVER}/cubox-i.xz" | unxz | btrfs receive ${VOLS}/
-# UGLY HACK but the name is not know
-mv ${VOLS}/* ${VOLS}/root
-btrfs property set -ts ${VOLS}/root ro false
+btrfs sub create ${VOLS}/root
 btrfs sub set-default 257 ${VOLS}/root
+${WGET} -q -O - "${DATA_SERVER}/cubox-i.tar.xz" | tar -xJv -C ${VOLS}/root
 umount ${NEWROOT}/
 mount ${SDCARD}${P3} ${NEWROOT}/
 
