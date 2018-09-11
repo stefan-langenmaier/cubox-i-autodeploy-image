@@ -2,8 +2,8 @@
 
 set -eux
 
-TAG="v0.9"
-DESC="Version bump to latest kernel 4.18 and latest u-boot"
+TAG="v0.10"
+DESC="Version bump to latest kernel 4.18.6 with changed CHOST"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
@@ -18,6 +18,7 @@ else
 	git commit -m "preparing new tag $TAG"
 	git tag "$TAG"
 	git push
+#	true
 fi
 
 #curl -i -H 'Authorization: token '$TOKEN \
@@ -38,7 +39,7 @@ echo $ID
 #REMOTE_FOLDER="remote"
 #mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d ${REMOTE_FOLDER}/boot.txt ${REMOTE_FOLDER}/boot.scr
 
-curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @${REMOTE_FOLDER}/extlinux.conf \
+curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @remote/extlinux.conf \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=extlinux.conf
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @remote/deploy.sh \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=deploy.sh
