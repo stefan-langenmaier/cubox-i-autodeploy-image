@@ -6,8 +6,11 @@ set -eux
 
 TAG="v0.10"
 
+echo "SETUP userland"
 ARCH=$(uname -m)
 WGET="/usr/bin/wget"
+TAR="/bin/tar"
+/bin/busybox --install -s
 
 DATA_SERVER="https://github.com/stefan-langenmaier/cubox-i-autodeploy-image/releases/download/${TAG}/"
 if [ "$ARCH" == "armv7l" ]; then
@@ -57,7 +60,10 @@ VOLS=${NEWROOT}/vols
 mkdir ${VOLS}
 btrfs sub create ${VOLS}/root
 btrfs sub set-default 257 ${VOLS}/root
-${WGET} -q -O - "${DATA_SERVER}/cubox-i.tar.xz" | tar -xJv -C ${VOLS}/root
+cd ${VOLS}/root
+${WGET} -q -O - "${DATA_SERVER}/cubox-i.tar.xz" | ${TAR} -xpJv --checkpoint --xattrs-include='*.*' --numeric-owner
+rm .dockerenv || true # make sure that there is no trace from the docker container left and open rc starts in the correct mode
+cd -
 umount ${NEWROOT}/
 mount ${SDCARD}${P3} ${NEWROOT}/
 
