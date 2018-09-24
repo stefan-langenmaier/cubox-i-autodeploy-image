@@ -2,7 +2,7 @@
 
 set -eux
 
-TAG="v0.10"
+TAG="v0.11"
 DESC="Version bump to latest kernel 4.18.6 with changed CHOST"
 
 OWNER=stefan-langenmaier
