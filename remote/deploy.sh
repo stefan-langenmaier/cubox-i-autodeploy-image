@@ -92,6 +92,9 @@ echo "* ENABLE SSH"
 echo "* ENABLE NTP CLIENT"
 [[ "$ARCH" == "armv7l" ]] && chroot ${NEWROOT} /bin/bash -c "rc-update add ntp-client default"
 
+echo "* ENABLE DynDns CLIENT"
+[[ "$ARCH" == "armv7l" ]] && chroot ${NEWROOT} /bin/bash -c "rc-update add ddclient default"
+
 echo "* NETWORK"
 [[ "$ARCH" == "armv7l" ]] &&  chroot ${NEWROOT} /bin/bash -c "cd /etc/init.d/ ; ln -s net.lo net.eth0 ; rc-update add net.eth0 boot"
 
