@@ -17,7 +17,7 @@ chmod +x ${INITRAMFS_FOLDER}/start-script
 
 # dns resolution is dynamically linked even if busybox is static
 # https://wiki.gentoo.org/wiki/Custom_Initramfs#DNS
-cp /lib/libnss_{dns,files}.so.2 /lib/libresolv.so.2 /lib/ld-linux-armhf.so.3 /lib/ld-2.25.so /lib/libc.so.6 ${INITRAMFS_FOLDER}/lib
+cp /lib/libnss_{dns,files}.so.2 /lib/libresolv.so.2 /lib/ld-linux-armhf.so.3 /lib/ld-2.26.so /lib/libc.so.6 ${INITRAMFS_FOLDER}/lib
 cp ${CONFIG_FOLDER}/etc/host.conf ${INITRAMFS_FOLDER}/etc
 cp ${CONFIG_FOLDER}/etc/nsswitch.conf ${INITRAMFS_FOLDER}/etc
 cp ${CONFIG_FOLDER}/etc/resolv.conf ${INITRAMFS_FOLDER}/etc
