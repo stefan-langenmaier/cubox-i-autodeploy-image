@@ -2,8 +2,8 @@
 
 set -eux
 
-TAG="v0.11"
-DESC="Version bump to latest kernel 4.18.6 with changed CHOST"
+TAG="v0.12"
+DESC="Version bump to latest kernel 4.18.14 with changed CHOST"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
@@ -53,5 +53,5 @@ curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/bina
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=zImage
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @output/autodeploy.img \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=autodeploy.img
-curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @../lxc-gentoo-build-tools/.packaged-subvolumes/cubox-i.tar.xz \
+curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @/autodeploy-exchange/cubox-i.tar.xz \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=cubox-i.tar.xz
