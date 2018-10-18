@@ -15,7 +15,7 @@ if [ -z ${TOKEN+x} ]; then
 	exit 1
 else
 	git add .
-	git commit -m "preparing new tag $TAG"
+	git commit -m "preparing new tag $TAG" || /bin/true #if the commit is already prepared
 	git tag "$TAG"
 	git push
 #	true
