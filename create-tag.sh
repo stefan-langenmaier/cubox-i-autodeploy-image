@@ -14,11 +14,11 @@ if [ -z ${TOKEN+x} ]; then
 	echo "GitHub TOKEN is unset"
 	exit 1
 else
-	git add .
-	git commit -m "preparing new tag $TAG" || /bin/true #if the commit is already prepared
-	git tag "$TAG"
-	git push
-#	true
+#	git add .
+#	git commit -m "preparing new tag $TAG" || /bin/true #if the commit is already prepared
+#	git tag "$TAG"
+#	git push
+	true
 fi
 
 #curl -i -H 'Authorization: token '$TOKEN \
