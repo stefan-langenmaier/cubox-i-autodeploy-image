@@ -2,8 +2,8 @@
 
 set -eux
 
-TAG="v0.12"
-DESC="Version bump to latest kernel 4.18.14 with changed CHOST"
+TAG="v0.13"
+DESC="Version bump to latest kernel 4.19.5"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
@@ -14,11 +14,11 @@ if [ -z ${TOKEN+x} ]; then
 	echo "GitHub TOKEN is unset"
 	exit 1
 else
-#	git add .
-#	git commit -m "preparing new tag $TAG" || /bin/true #if the commit is already prepared
-#	git tag "$TAG"
-#	git push
-	true
+	git add .
+	git commit -m "preparing new tag $TAG" || /bin/true #if the commit is already prepared
+	git tag "$TAG"
+	git push
+#	true
 fi
 
 #curl -i -H 'Authorization: token '$TOKEN \
