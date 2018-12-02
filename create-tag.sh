@@ -2,13 +2,20 @@
 
 set -eux
 
-TAG="v0.13"
+# this is the version that will be used for the next tag
+TAG="v0.15"
 DESC="Version bump to latest kernel 4.19.5"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
 
 sed -i "s/TAG=\".*\"$/TAG=\"$TAG\"/" remote/deploy.sh
+sed -i 's#^\(.*\)v0.*\(/.*\)$#\1'$TAG'\2#' config/autodeploy-script-source
+
+
+SUBTAG=${TAG:3:5}
+NEXT_SUBTAG=$(( SUBTAG + 1 ))
+sed -i "s/TAG=\".*\"$/TAG=\"v0.$NEXT_SUBTAG\"/" create-tag.sh
 
 if [ -z ${TOKEN+x} ]; then
 	echo "GitHub TOKEN is unset"
