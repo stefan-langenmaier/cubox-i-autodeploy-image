@@ -37,6 +37,8 @@ mount /dev/loop0 ${AUTODEPLOY_MOUNT}
 echo "copy files"
 mkdir ${AUTODEPLOY_MOUNT}/dtbs/
 cp kernel-bin/imx6q-cubox-i.dtb ${AUTODEPLOY_MOUNT}/dtbs/imx6q-cubox-i.dtb
+cp kernel-bin/imx6q-cubox-i-emmc-som-v15.dtb ${AUTODEPLOY_MOUNT}/dtbs/imx6q-cubox-i-emmc-som-v15.dtb
+cp kernel-bin/imx6q-cubox-i-som-v15.dtb ${AUTODEPLOY_MOUNT}/dtbs/imx6q-cubox-i-som-v15.dtb
 cp kernel-bin/zImage ${AUTODEPLOY_MOUNT}/zImage
 mkdir ${AUTODEPLOY_MOUNT}/extlinux
 cp ${CONFIG_FOLDER}/extlinux.conf ${AUTODEPLOY_MOUNT}/extlinux/

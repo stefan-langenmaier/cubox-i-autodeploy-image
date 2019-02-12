@@ -4,7 +4,7 @@ set -eux
 
 # this is the version that will be used for the next tag
 TAG="v0.25"
-DESC="Version bump to latest kernel 4.19.5"
+DESC="Version bump to latest kernel"
 
 OWNER=stefan-langenmaier
 REPO=cubox-i-autodeploy-image
@@ -56,6 +56,10 @@ curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/bina
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=u-boot.img
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @kernel-bin/imx6q-cubox-i.dtb \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=imx6q-cubox-i.dtb
+curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @kernel-bin/imx6q-cubox-i-emmc-som-v15.dtb \
+	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=imx6q-cubox-i-emmc-som-v15.dtb
+curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @kernel-bin/imx6q-cubox-i-som-v15.dtb \
+	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=imx6q-cubox-i-som-v15.dtb
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @kernel-bin/zImage \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=zImage
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @output/autodeploy.img \

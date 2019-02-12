@@ -76,6 +76,8 @@ mkdir ${BOOT}/dtbs
 ${WGET} -q -O - "${DATA_SERVER}/extlinux.conf" > ${BOOT}/extlinux/extlinux.conf
 ${WGET} -q -O - "${DATA_SERVER}/zImage" > ${BOOT}/zImage
 ${WGET} -q -O - "${DATA_SERVER}/imx6q-cubox-i.dtb" > ${BOOT}/dtbs/imx6q-cubox-i.dtb
+${WGET} -q -O - "${DATA_SERVER}/imx6q-cubox-i-emmc-som-v15.dtb" > ${BOOT}/dtbs/imx6q-cubox-i-emmc-som-v15.dtb
+${WGET} -q -O - "${DATA_SERVER}/imx6q-cubox-i-som-v15.dtb" > ${BOOT}/dtbs/imx6q-cubox-i-som-v15.dtb
 umount ${BOOT}
 
 echo "DEFAULT CONFIGURATION"
