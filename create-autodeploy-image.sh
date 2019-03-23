@@ -11,7 +11,7 @@ mkdir ${OUTPUT_FOLDER}
 bash create-autodeploy-initramfs.sh
 
 echo "create empty image"
-dd if=/dev/zero of=${OUTPUT_FOLDER}/autodeploy.img bs=1M count=16
+dd if=/dev/zero of=${OUTPUT_FOLDER}/autodeploy.img bs=1M count=24
 
 echo "partition image"
 parted -s ${OUTPUT_FOLDER}/autodeploy.img mklabel msdos
