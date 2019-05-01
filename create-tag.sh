@@ -3,7 +3,7 @@
 set -eux
 
 # this is the version that will be used for the next tag
-TAG="v0.28"
+TAG="v0.29"
 DESC="Version bump to latest kernel"
 
 OWNER=stefan-langenmaier
