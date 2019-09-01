@@ -4,7 +4,7 @@ set -eux
 
 # there are no temporary downloads, the space is limited all files should be streamed directly in place
 
-TAG="v0.36"
+TAG="v0.37"
 
 echo "SETUP userland"
 ARCH=$(uname -m)
