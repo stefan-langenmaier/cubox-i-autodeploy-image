@@ -9,7 +9,17 @@ INITRAMFS_FOLDER="${OUTPUT_FOLDER}/autodeploy-initramfs"
 
 [[ -d ${INITRAMFS_FOLDER} ]] && rm -r ${INITRAMFS_FOLDER}
 mkdir -p ${INITRAMFS_FOLDER}/{bin,dev,etc,lib,mnt/root,proc,root,sbin,sys,usr/lib,usr/bin,usr/sbin,etc/ssl/certs,usr/share/ca-certificates}
-cp -a /dev/{null,console,tty,tty0,tty1,ram0,urandom,random} ${INITRAMFS_FOLDER}/dev/
+
+# https://www.mjmwired.net/kernel/Documentation/devices.txt
+mknod ${INITRAMFS_FOLDER}/dev/null c 1 3
+mknod ${INITRAMFS_FOLDER}/dev/console c 5 1
+mknod ${INITRAMFS_FOLDER}/dev/tty c 5 0
+mknod ${INITRAMFS_FOLDER}/dev/tty0 c 4 0
+mknod ${INITRAMFS_FOLDER}/dev/tty1 c 4 1
+mknod ${INITRAMFS_FOLDER}/dev/ram0 b 1 0
+mknod ${INITRAMFS_FOLDER}/dev/urandom c 1 9
+mknod ${INITRAMFS_FOLDER}/dev/random c 1 8
+
 cp -a /proc/{net/route,cmdline} ${INITRAMFS_FOLDER}/proc/
 cp -a /bin/busybox ${INITRAMFS_FOLDER}/bin/busybox
 cp -a ${CONFIG_FOLDER}/start-script ${INITRAMFS_FOLDER}/start-script
