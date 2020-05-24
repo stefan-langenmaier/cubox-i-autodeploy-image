@@ -19,6 +19,7 @@ mknod ${INITRAMFS_FOLDER}/dev/tty1 c 4 1
 mknod ${INITRAMFS_FOLDER}/dev/ram0 b 1 0
 mknod ${INITRAMFS_FOLDER}/dev/urandom c 1 9
 mknod ${INITRAMFS_FOLDER}/dev/random c 1 8
+mknod ${INITRAMFS_FOLDER}/dev/zero c 1 5
 
 cp -a /proc/{net/route,cmdline} ${INITRAMFS_FOLDER}/proc/
 cp -a /bin/busybox ${INITRAMFS_FOLDER}/bin/busybox
