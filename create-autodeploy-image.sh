@@ -17,7 +17,7 @@ echo "partition image"
 parted -s ${OUTPUT_FOLDER}/autodeploy.img mklabel msdos
 parted -s ${OUTPUT_FOLDER}/autodeploy.img mkpart primary 1M "100%"
 sleep 1
-partprobe
+partprobe ${OUTPUT_FOLDER}/autodeploy.img
 
 echo "install boot loader"
 losetup /dev/loop0 ${OUTPUT_FOLDER}/autodeploy.img
