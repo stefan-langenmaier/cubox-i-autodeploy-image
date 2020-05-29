@@ -1,3 +1,4 @@
 output/
 kernel-bin/
 u-boot-bin/
+rootfs-bin/
