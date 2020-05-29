@@ -64,5 +64,5 @@ curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/bina
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=zImage
 curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @output/autodeploy.img \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=autodeploy.img
-curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @/autodeploy-exchange/cubox-i.tar.xz \
+curl -i -H 'Authorization: token '$TOKEN --header "Content-Type:application/binary" --data-binary @rootfs-bin/cubox-i.tar.xz \
 	https://uploads.github.com/repos/$OWNER/$REPO/releases/$ID/assets?name=cubox-i.tar.xz
