@@ -59,7 +59,7 @@ mount ${SDCARD}${P3} ${NEWROOT}/
 VOLS=${NEWROOT}/vols
 mkdir ${VOLS}
 btrfs sub create ${VOLS}/root
-btrfs sub set-default 257 ${VOLS}/root
+btrfs sub set-default ${VOLS}/root
 cd ${VOLS}/root
 ${WGET} -q -O - "${DATA_SERVER}/cubox-i.tar.xz" | ${TAR} -xpJv --checkpoint --xattrs-include='*.*' --numeric-owner
 rm .dockerenv || true # make sure that there is no trace from the docker container left and open rc starts in the correct mode
@@ -70,9 +70,10 @@ mount ${SDCARD}${P3} ${NEWROOT}/
 
 echo "BOOT SETUP"
 BOOT=${NEWROOT}/boot
+mkdir -p ${BOOT}
 mount ${SDCARD}${P1} ${BOOT}
-mkdir ${BOOT}/extlinux
-mkdir ${BOOT}/dtbs
+mkdir -p ${BOOT}/extlinux
+mkdir -p ${BOOT}/dtbs
 ${WGET} -q -O - "${DATA_SERVER}/extlinux.conf" > ${BOOT}/extlinux/extlinux.conf
 ${WGET} -q -O - "${DATA_SERVER}/zImage" > ${BOOT}/zImage
 ${WGET} -q -O - "${DATA_SERVER}/imx6q-cubox-i.dtb" > ${BOOT}/dtbs/imx6q-cubox-i.dtb
@@ -125,3 +126,4 @@ fi
 
 umount ${NEWROOT}
 echo "ALL DONE - KTHXBYE"
+

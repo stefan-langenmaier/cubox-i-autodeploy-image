@@ -26,6 +26,9 @@ AUTODEPLOY_SCRIPT="autodeploy-script"
 
 echo "UPDATE TIME" # for https certificates to work
 ntpd -qn -p pool.ntp.org
+# just make extra sure it works
+sleep 1
+ntpd -qn -p pool.ntp.org
 
 echo "DOWNLOADING AUTODEPLOY SCRIPT"
 /usr/bin/wget -O "${AUTODEPLOY_SCRIPT}" "${AUTODEPLOY_SCRIPT_SOURCE}" || rescue_shell
